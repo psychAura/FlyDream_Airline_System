@@ -1,0 +1,46 @@
+{% extends 'flights/layout.html' %}
+
+{% block content %}
+<section class="relative w-full py-20 overflow-hidden">
+
+  <!-- Background image -->
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/static/images/airline.jpg');"></div>
+
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Foreground content -->
+  <div class="relative z-10 max-w-md mx-auto bg-white p-6 rounded-2xl shadow-xl">
+    <h2 class="text-2xl font-bold text-center mb-4 text-[#E40046] uppercase">
+      Book Your Flight
+    </h2>
+
+    <!-- Flight summary -->
+    <div class="text-sm text-center text-gray-700 mb-6">
+      <p><strong>{{ flight.origin.city }} ({{ flight.origin.code }})</strong> → <strong>{{ flight.destination.city }} ({{ flight.destination.code }})</strong></p>
+      <p>Departure: {{ flight.departure_time|date:"D, M j, Y - H:i" }}</p>
+      <p>Class: <span class="capitalize">{{ flight.get_travel_class_display }}</span></p>
+      <p class="text-[#E40046] font-semibold text-lg mt-1">${{ flight.price }}</p>
+    </div>
+
+    <!-- Form -->
+    <form method="post" class="space-y-3">
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          <label class="block text-sm font-medium mb-1 text-[#0F1D3C]">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="text-red-500 text-xs mt-1">{{ field.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="w-full bg-[#E40046] text-white font-semibold py-2 px-4 rounded hover:bg-white hover:text-[#E40046] border border-[#E40046] transition">
+         Book Now
+      </button>
+    </form>
+
+  </div>
+</section>
+{% endblock %}

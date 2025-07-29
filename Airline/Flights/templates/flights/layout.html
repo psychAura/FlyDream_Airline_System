@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    tailwind.config = {
+        theme: {
+        extend: {
+            colors: {
+              primary: '#E40046',       // crimson red
+              dark: '#0F1D3C',          // deep navy
+              light: '#F5F7FA',         // optional light background
+              white: '#ffffff',
+              },
+            fontFamily: {
+              headline: ['Montserrat', 'sans-serif'],
+            }
+        }
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Enable smooth scroll for anchor links
+      document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+<title>Document</title>
+</head>
+
+<body class="bg-background text-slate-800 font-sans">
+
+<!-- NAVBAR -->
+<header class="bg-[#0F1D3C] text-white py-4 px-6 flex justify-between items-center">
+  <h1 class="text-2xl font-bold tracking-wide uppercase">
+    <a href="{% url 'index' %}" >Fly<span class="text-[#E40046]">Dream</span></a>
+  </h1>
+  <nav class="space-x-6 text-sm font-semibold uppercase tracking-wide">
+    <a href="{% url 'index' %}" class="hover:text-[#E40046]">Home</a>
+    <a href="{% url 'about' %}" class="hover:text-[#E40046]">About</a>
+    <a href="{% url 'contact' %}" class="hover:text-[#E40046]">Contact</a>
+    <a href="{% url 'search' %}" class="px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
+      Book Now
+    </a>
+  </nav>
+</header>
+  {% block hero %}
+  {% endblock %}
+  
+
+  <main class="w-full px-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-[#0F1D3C] text-white py-12 px-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+    <!-- About -->
+    <div>
+      <h4 class="text-xl font-bold text-[#E40046] mb-4">FlyDream</h4>
+      <p class="text-sm text-white/80">
+        Affordable, reliable, and instant flight bookings to your favorite destinations. Fly dream — always.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4 class="text-xl font-bold text-[#E40046] mb-4">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/" class="hover:text-[#E40046] transition">Home</a></li>
+        <li><a href="/search/" class="hover:text-[#E40046] transition">Search Flights</a></li>
+        <li><a href="/about/" class="hover:text-[#E40046] transition">About</a></li>
+        <li><a href="/contact/" class="hover:text-[#E40046] transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h4 class="text-xl font-bold text-[#E40046] mb-4">Contact</h4>
+      <ul class="text-sm space-y-2 text-white/80">
+        <li>Email: support@flydream.com</li>
+        <li>Phone: +233 20 000 0000</li>
+        <li>Address: 123 Aviation Rd, Accra</li>
+      </ul>
+    </div>
+
+    <!-- Socials -->
+    <div>
+      <h4 class="text-xl font-bold text-[#E40046] mb-4">Follow Us</h4>
+      <ul class="flex space-x-4 text-white text-lg">
+        <li><a href="#" class="hover:text-[#E40046]"><i class="fab fa-facebook-f"></i></a>Facebook</li>
+        <li><a href="#" class="hover:text-[#E40046]"><i class="fab fa-twitter"></i></a>Twitter</li>
+        <li><a href="#" class="hover:text-[#E40046]"><i class="fab fa-instagram"></i></a>Instagram</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-white/50 text-sm mt-10">
+    &copy; 2025 FlyDream. All rights reserved.
+  </div>
+</footer>
+
+
+</body>
+</html>

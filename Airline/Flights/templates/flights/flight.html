@@ -1,0 +1,54 @@
+{% extends 'flights/layout.html' %}
+
+
+{% block content %}
+
+    <h1> Flight {{ flight.id }}, {{flight.flight_number}}
+    </h1>
+
+    <ul>
+        <li>Flight Number : {{ flight.flight_number }}</li>
+        <li>Airline : {{flight.airline }}</li>
+        <li> Origin: {{ flight.origin }} </li>
+        <li> Destination: {{ flight.destination }} </li>
+        <li>Departure Time  : {{ flight.departure_time }}</li>
+        <li> Arrival Time: {{ flight.arrival_time }} </li>
+    </ul>
+
+    <a href="{% url 'book' %}">Book Flight</a>
+
+
+    <!-- Flight List Section (Top 3) -->
+<section class="bg-white py-12 px-6 rounded-lg mb-12" id="flights">
+  <h1 class="text-3xl font-bold text-primary mb-8 text-center">Available Flights</h1>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {% for flight in flights %}
+      <div class="bg-amber-50 border border-amber-200 rounded-xl shadow hover:shadow-lg transition p-6 space-y-3">
+        <div class="flex justify-between items-center text-rose-900">
+          <h3 class="text-lg font-bold">Flight {{ flight.flight_number }}</h3>
+          <span class="bg-rose-900 text-amber-200 text-xs px-3 py-1 rounded-full">Available</span>
+        </div>
+
+        <p class="text-sm text-rose-800">
+           From <span class="font-semibold">{{ flight.origin }}</span> to <span class="font-semibold">{{ flight.destination }}</span>
+        </p>
+        <p class="text-sm text-rose-700">Departure: <span class="font-medium">{{ flight.departure_time }}</span></p>
+        <p class="text-sm text-rose-700">Arrival: <span class="font-medium">{{ flight.arrival_time }}</span></p>
+
+        <div class="mt-4">
+          <a href="{% url 'flight' flight.id %}" class="inline-block bg-primary text-rose-700 px-4 py-2 rounded-lg hover:bg-primaryDark transition">
+            View Details
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="col-span-full text-center text-slate-600">No flights available.</p>
+    {% endfor %}
+  </div>
+
+
+ 
+
+  
+{% endblock  %}

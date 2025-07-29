@@ -1,0 +1,57 @@
+{% extends 'flights/layout.html' %}
+
+{% block content %}
+
+<section class="bg-[#FDF2F2] min-h-screen py-12 px-4">
+  <div class="max-w-4xl mx-auto bg-white p-10 rounded-2xl shadow-xl">
+    <h1 class="text-4xl font-bold text-center text-[#E40046] mb-8 uppercase tracking-wide">
+      Find Your Flight
+    </h1>
+
+    <form method="GET" action="{% url 'search' %}" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <input type="text" name="from" placeholder="From (City name only)" value="{{ from|default:'' }}"
+             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      <input type="text" name="to" placeholder="To (City name only)" value="{{ to|default:'' }}"
+             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      <input type="date" name="date" value="{{ date|default:'' }}"
+             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      <div class="md:col-span-3 text-center">
+        <button type="submit"
+                class="bg-[#E40046] hover:bg-white hover:text-[#E40046] border-2 border-[#E40046] text-white font-semibold py-3 px-8 rounded-full transition duration-300">
+          Search
+        </button>
+      </div>
+    </form>
+
+    {% if request.GET %}
+    {% if flights %}
+        {% if show_fallback %}
+        <p class="text-yellow-600 font-medium mb-4">
+            No exact matches for your selected date. Showing available flights from {{ from }} to {{ to }}.
+        </p>
+        {% else %}
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Results:</h2>
+        {% endif %}
+
+        <ul class="space-y-3">
+        {% for flight in flights %}
+            <a href="{% url 'book_flight' flight.id %}" class="block">
+            <li class="p-4 bg-gray-50 border rounded-lg hover:bg-blue-100 transition cursor-pointer">
+                <strong>{{ flight.origin }}</strong> → <strong>{{ flight.destination }}</strong><br/>
+                Date: {{ flight.departure_time|date:"D, M j, Y - H:i" }}<br/>
+                Class: {{ flight.get_travel_class_display }} | Price: ${{ flight.price }}
+            </li>
+            </a>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+        <p class="text-red-600 font-medium">No flights found for your search.</p>
+    {% endif %}
+    {% endif %}
+
+
+  </div>
+</section>
+
+{% endblock %}
