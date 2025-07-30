@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'Airline.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default= 'sqlite:///db.sqlite3')
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"))
 }
 
 

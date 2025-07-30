@@ -25,25 +25,48 @@
       // Enable smooth scroll for anchor links
       document.documentElement.style.scrollBehavior = 'smooth';
     </script>
-<title>Document</title>
+<title>FlyDream</title>
 </head>
 
 <body class="bg-background text-slate-800 font-sans">
 
 <!-- NAVBAR -->
-<header class="bg-[#0F1D3C] text-white py-4 px-6 flex justify-between items-center">
-  <h1 class="text-2xl font-bold tracking-wide uppercase">
-    <a href="{% url 'index' %}" >Fly<span class="text-[#E40046]">Dream</span></a>
-  </h1>
-  <nav class="space-x-6 text-sm font-semibold uppercase tracking-wide">
-    <a href="{% url 'index' %}" class="hover:text-[#E40046]">Home</a>
-    <a href="{% url 'about' %}" class="hover:text-[#E40046]">About</a>
-    <a href="{% url 'contact' %}" class="hover:text-[#E40046]">Contact</a>
-    <a href="{% url 'search' %}" class="px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
+<header class="bg-[#0F1D3C] text-white py-4 px-6">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold tracking-wide uppercase">
+      <a href="{% url 'index' %}">Fly<span class="text-[#E40046]">Dream</span></a>
+    </h1>
+
+    <!-- Desktop Nav Links -->
+    <nav id="menu" class="hidden md:flex space-x-6 text-sm font-semibold uppercase tracking-wide">
+      <a href="{% url 'index' %}" class="px-4 py-2 hover:text-[#E40046]">Home</a>
+      <a href="{% url 'about' %}" class="px-4 py-2 hover:text-[#E40046]">About</a>
+      <a href="{% url 'contact' %}" class="px-4 py-2 hover:text-[#E40046]">Contact</a>
+      <a href="{% url 'search' %}" class="px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
+        Book Now
+      </a>
+    </nav>
+
+    <!-- Hamburger Icon (mobile only) -->
+    <button id="menu-btn" class="md:hidden focus:outline-none ml-4">
+      <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
+        <path d="M4 5h16M4 12h16M4 19h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Nav Links -->
+  <nav id="mobile-menu" class="md:hidden mt-4 space-y-4 text-sm font-semibold uppercase tracking-wide hidden">
+    <a href="{% url 'index' %}" class="block hover:text-[#E40046]">Home</a>
+    <a href="{% url 'about' %}" class="block hover:text-[#E40046]">About</a>
+    <a href="{% url 'contact' %}" class="block hover:text-[#E40046]">Contact</a>
+    <a href="{% url 'search' %}" class="inline-block px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
       Book Now
     </a>
   </nav>
 </header>
+
   {% block hero %}
   {% endblock %}
   
@@ -102,6 +125,16 @@
   </div>
 </footer>
 
+
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
 </body>
 </html>

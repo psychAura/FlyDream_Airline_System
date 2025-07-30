@@ -9,12 +9,24 @@
     </h1>
 
     <form method="GET" action="{% url 'search' %}" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <input type="text" name="from" placeholder="From (City name only)" value="{{ from|default:'' }}"
-             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
-      <input type="text" name="to" placeholder="To (City name only)" value="{{ to|default:'' }}"
-             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
-      <input type="date" name="date" value="{{ date|default:'' }}"
-             class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      <div>
+        <label for="from" class="block text-sm font-medium text-gray-700 mb-1">From</label>
+        <input type="text" id="from" name="from" placeholder="City name only" value="{{ from|default:'' }}"
+              class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="to" class="block text-sm font-medium text-gray-700 mb-1">To</label>
+        <input type="text" id="to" name="to" placeholder="City name only" value="{{ to|default:'' }}"
+              class="px-4 py-3 rounded-lg border border-gray-300 w-full focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Departure Date</label>
+        <input type="date" id="date" name="date" value="{{ date|default:'' }}"
+              class="px-4 py-3 rounded-lg border border-gray-300 w-full text-gray-500 focus:ring-2 focus:ring-[#E40046] focus:outline-none" />
+      </div>
+
       <div class="md:col-span-3 text-center">
         <button type="submit"
                 class="bg-[#E40046] hover:bg-white hover:text-[#E40046] border-2 border-[#E40046] text-white font-semibold py-3 px-8 rounded-full transition duration-300">
@@ -22,6 +34,7 @@
         </button>
       </div>
     </form>
+
 
     {% if request.GET %}
     {% if flights %}
