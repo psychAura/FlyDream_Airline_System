@@ -37,35 +37,36 @@
       <a href="{% url 'index' %}">Fly<span class="text-[#E40046]">Dream</span></a>
     </h1>
 
-    <!-- Desktop Nav Links -->
-    <nav class="hidden md:flex space-x-6 text-sm font-semibold uppercase tracking-wide">
-      <a href="{% url 'index' %}" class="px-4 py-2 hover:text-[#E40046]">Home</a>
-      <a href="{% url 'about' %}" class="px-4 py-2 hover:text-[#E40046]">About</a>
-      <a href="{% url 'contact' %}" class="px-4 py-2 hover:text-[#E40046]">Contact</a>
-      <a href="{% url 'search' %}" class="px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wide">
+      <a href="{% url 'index' %}" class="hover:text-[#E40046]">Home</a>
+      <a href="{% url 'about' %}" class="hover:text-[#E40046]">About</a>
+      <a href="{% url 'contact' %}" class="hover:text-[#E40046]">Contact</a>
+      <a href="{% url 'search' %}" class="ml-4 bg-[#E40046] text-white px-4 py-2 rounded-full hover:bg-white hover:text-[#E40046] border-2 border-[#E40046] transition">
         Book Now
       </a>
     </nav>
 
-    <!-- Hamburger Icon -->
-    <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-6 focus:outline-none relative z-50 p-2 cursor-pointer bg-white/10 rounded-md">
-      <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
-        <path d="M4 5h16M4 12h16M4 19h16" />
+    <!-- Hamburger Icon (Mobile only) -->
+    <button id="menu-btn" class="md:hidden p-2 focus:outline-none">
+      <svg class="w-6 h-6 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </div>
 
-  <!-- Mobile Nav Links -->
-  <nav id="mobile-menu" class="md:hidden bg-[#0F1D3C] px-6 py-4 mt-2 space-y-4 text-sm font-semibold uppercase tracking-wide max-h-0 overflow-hidden transition-all duration-500 ease-in-out shadow-lg rounded-md">
-
-    <a href="{% url 'index' %}" class="block hover:text-[#E40046]">Home</a>
-    <a href="{% url 'about' %}" class="block hover:text-[#E40046]">About</a>
-    <a href="{% url 'contact' %}" class="block hover:text-[#E40046]">Contact</a>
-    <a href="{% url 'search' %}" class="inline-block px-4 py-2 bg-[#E40046] text-white rounded-full hover:bg-white hover:text-[#E40046] transition border-2 border-[#E40046]">
+  <!-- Mobile Nav -->
+  <nav id="mobile-menu" class="md:hidden hidden flex-col space-y-2 mt-4 text-sm font-semibold uppercase tracking-wide">
+    <a href="{% url 'index' %}" class="hover:text-[#E40046]">Home</a>
+    <a href="{% url 'about' %}" class="hover:text-[#E40046]">About</a>
+    <a href="{% url 'contact' %}" class="hover:text-[#E40046]">Contact</a>
+    <a href="{% url 'search' %}" class="bg-[#E40046] text-white px-4 py-2 rounded-full hover:bg-white hover:text-[#E40046] border-2 border-[#E40046] transition text-center">
       Book Now
     </a>
   </nav>
 </header>
+
+
 
 {% block hero %}
 {% endblock %}
