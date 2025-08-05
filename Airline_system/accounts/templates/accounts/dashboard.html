@@ -1,0 +1,78 @@
+{% extends "flights/layout.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto p-6 space-y-8">
+
+  <!-- 1. Welcome Section -->
+  <div class="bg-white shadow rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Welcome back, {{ user.first_name }} ! </h2>
+    <ul class="text-gray-600 space-y-1">
+      <li><strong>Email:</strong> {{ user.email }}</li>
+      <li><strong>Join Date:</strong> {{ user.date_joined|date:"F d, Y" }}</li>
+      <li><strong>Last Login:</strong> {{ user.last_login|date:"F d, Y, H:i" }}</li>
+    </ul>
+  </div>
+
+  <!-- 2. Booked Flights Summary -->
+  <div class="bg-white shadow rounded-lg p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Booked Flights</h3>
+    {% if bookings %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Flight Number</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Destination</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Departure Time</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Status</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {% for booking in bookings %}
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-2">{{ booking.flight.flight_number }}</td>
+            <td class="px-4 py-2">{{ booking.flight.destination }}</td>
+            <td class="px-4 py-2">{{ booking.flight.departure_time|date:"M d, Y H:i" }}</td>
+            <td class="px-4 py-2">
+              <span class="px-2 py-1 text-xs rounded-full 
+              {% if booking.status == 'confirmed' %}bg-green-100 text-green-700
+              {% elif booking.status == 'pending' %}bg-yellow-100 text-yellow-700
+              {% else %}bg-red-100 text-red-700{% endif %}">
+                {{ booking.status|title }}
+              </span>
+            </td>
+            <td class="px-4 py-2 space-x-2">
+              <a href="" class="text-blue-600 hover:underline text-sm">View</a>
+              <a href="" class="text-red-600 hover:underline text-sm">Cancel</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="text-gray-600">You haven't booked any flights yet.</p>
+    {% endif %}
+  </div>
+
+    <!-- 3. Quick Actions -->
+    <div class="flex flex-wrap gap-4">
+    <a href="{% url 'search' %}" class="bg-gray-800 text-white px-5 py-2 rounded-md hover:bg-gray-900 transition">
+        Book New Flight
+    </a>
+    <a href="#" class="bg-gray-700 text-white px-5 py-2 rounded-md hover:bg-gray-800 transition">
+        Update Profile
+    </a>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-600 text-white px-5 py-2 rounded-md hover:bg-red-700 transition">
+        Logout
+        </button>
+    </form>
+    </div>
+
+
+</div>
+{% endblock %}

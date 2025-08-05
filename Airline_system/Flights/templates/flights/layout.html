@@ -42,9 +42,19 @@
       <a href="{% url 'index' %}" class="hover:text-[#E40046]">Home</a>
       <a href="{% url 'about' %}" class="hover:text-[#E40046]">About</a>
       <a href="{% url 'contact' %}" class="hover:text-[#E40046]">Contact</a>
+      <ul>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+      </ul>
+
       <a href="{% url 'search' %}" class="ml-4 bg-[#E40046] text-white px-4 py-2 rounded-full hover:bg-white hover:text-[#E40046] border-2 border-[#E40046] transition">
         Book Now
       </a>
+      
+
     </nav>
 
   <!-- Hamburger Icon (Mobile only) -->

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
     
@@ -39,7 +40,7 @@ class Flight(models.Model):
         ##return f"{self.first} ,{self.last}"
  
 class GuestBooking(models.Model):
-    ## user =''
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="bookings")
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length =64)
     email =models.EmailField()

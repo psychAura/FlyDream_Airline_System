@@ -60,23 +60,44 @@ def search(request):
     return render(request, "flights/search.html", context)
 
 
-### Book_flight
+# ### Book_flight
+# def book_flight(request, flight_id):
+#      flight = get_object_or_404(Flight, id=flight_id)
+
+#      if request.method == "POST":
+#             form = GuestBookingForm(request.POST)
+#             if form.is_valid():
+#                 booking = form.save(commit=False)  
+#                 booking.flight = flight
+#                 booking.booking_date = timezone.now()
+#                 booking.save()
+#                 return redirect("booking_success", booking.id) 
+#      else:
+#             form = GuestBookingForm()
+
+#      return render(request, "flights/book.html", {"form": form, "flight": flight})
+
+
 def book_flight(request, flight_id):
-     flight = get_object_or_404(Flight, id=flight_id)
+    flight = get_object_or_404(Flight, id=flight_id)
 
-     if request.method == "POST":
-            form = GuestBookingForm(request.POST)
-            if form.is_valid():
-                booking = form.save(commit=False)  
-                booking.flight = flight
-                booking.booking_date = timezone.now()
-                booking.save()
-                return redirect("booking_success", booking.id) 
-     else:
-            form = GuestBookingForm()
+    if request.method == "POST":
+        form = GuestBookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.flight = flight
+            booking.booking_date = timezone.now()
 
-     return render(request, "flights/book.html", {"form": form, "flight": flight})
+            # Associate with user if logged in
+            if request.user.is_authenticated:
+                booking.user = request.user  # You must have a `user` field in the model
 
+            booking.save()
+            return redirect("booking_success", booking.id)
+    else:
+        form = GuestBookingForm()
+
+    return render(request, "flights/book.html", {"form": form, "flight": flight})
 
 def booking_success(request, booking_id):
     booking = get_object_or_404(GuestBooking, id=booking_id)
