@@ -59,7 +59,25 @@
   </div>
 </section>
 
-
+{% if not user.is_authenticated %}
+<!-- Login/Signup CTA Section -->
+<section class="bg-[white] text-#0F1D3C py-12 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold uppercase text-[#E40046] mb-4">Ready to Fly?</h2>
+    <p class="text-#E40046/80 mb-6 text-lg">
+      Sign up or log in to book your first flight and access your personal dashboard.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="{% url 'login' %}" class="px-6 py-3 bg-white text-[#0F1D3C] font-semibold rounded-full border-2 border-white hover:bg-[#E40046] hover:text-white transition">
+        Login
+      </a>
+      <a href="{% url 'signup' %}" class="px-6 py-3 bg-[#E40046] text-white font-semibold rounded-full border-2 border-[#E40046] hover:bg-white hover:text-[#E40046] transition">
+        Sign Up
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
 <!-- Features -->
 <section class="bg-[#0F1D3C] text-white py-10 px-6">
   <div class="w-full text-center px-4 sm:px-8 rounded-xl">

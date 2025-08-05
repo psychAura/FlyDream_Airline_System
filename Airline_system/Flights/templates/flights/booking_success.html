@@ -18,7 +18,14 @@
       <p><strong>Price:</strong> ${{ booking.flight.price }}</p>
       <p><strong>Status:</strong> {{ booking.status|title }}</p>
     </div>
-
+    {% if user.is_authenticated %}
+    <div class="mt-6 text-center">
+      <a href="{% url 'dashboard' %}" class="inline-block bg-[#E40046] text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-[#0F1D3C] border border-[#0F1D3C] transition">
+        View Your Booking History
+      </a>
+    </div>
+  {% endif %}
+    <br>
     <a href="{% url 'index' %}" class="inline-block bg-[#E40046] text-white font-semibold px-6 py-3 rounded-full border border-[#E40046] hover:bg-white hover:text-[#E40046] transition">
       ← Back to Home
     </a>
