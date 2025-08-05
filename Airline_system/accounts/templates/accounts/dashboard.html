@@ -6,7 +6,7 @@
 
   <!-- 1. Welcome Section -->
   <div class="bg-white shadow rounded-lg p-6">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Welcome back, {{ user.first_name }} ! </h2>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Welcome, {{ user.first_name }} ! </h2>
     <ul class="text-gray-600 space-y-1">
       <li><strong>Email:</strong> {{ user.email }}</li>
       <li><strong>Join Date:</strong> {{ user.date_joined|date:"F d, Y" }}</li>
