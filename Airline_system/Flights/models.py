@@ -55,5 +55,5 @@ class GuestBooking(models.Model):
     
     
     def __str__(self):
-        return f"{self.first} have booked flight {self.flights} on this date {self.date}"
+        return f"{self.first_name} have booked flight {self.flight} on this date {self.booking_date}"
  
